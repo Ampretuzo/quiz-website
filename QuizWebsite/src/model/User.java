@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Set;
+
 /**
  * This class encapsulates user data.
  * 
@@ -10,14 +12,16 @@ public class User {
 
 	private String userName;
 	private String hexPassword;
+	private Set<String> friends; // Set of friends userNames of this user.
 	
 	/**
 	 * User ctor.
 	 * 
 	 * @param userName - String user name
 	 */
-	public User(String userName) {
+	public User(String userName, String hexPassword) {
 		this.userName = userName;
+		setHexPassword(hexPassword);
 	}
 	
 	/**
@@ -40,6 +44,4 @@ public class User {
 	public String getUserName() {
 		return userName;
 	}
-	
-	
 }
