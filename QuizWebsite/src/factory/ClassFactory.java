@@ -10,6 +10,7 @@ import classes.question.QuestionMC;
 import classes.question.QuestionMCMA;
 import classes.question.QuestionPR;
 import classes.question.QuestionQR;
+import classes.question.QuestionTF;
 
 public class ClassFactory {
 	// Each method returns corresponding class.
@@ -52,5 +53,10 @@ public class ClassFactory {
 	public QuestionMCMA getQuestionMCMA(String newProblem, int grade,  List<String> correctAnswers, List<String> wrongAnswers)
 	{
 		return new QuestionMCMA(newProblem, grade, correctAnswers, wrongAnswers);
+	}
+	
+	public QuestionTF getQuestionTF(String newProblem, int grade,  List<String> propositions, List<String> answers)
+	{
+		return new QuestionTF(newProblem, grade, propositions, answers);
 	}
 }

@@ -43,8 +43,7 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userName = request.getParameter("username");
-		String password = request.getParameter("password");
-		System.out.println(userName + "Password" + password);
+		String password = request.getParameter("password"); 
 		
 		RequestDispatcher dispatcher;
 		ServletContext ctx= getServletContext();  

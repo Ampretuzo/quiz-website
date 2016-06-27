@@ -5,9 +5,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-//import org.apache.commons.dbcp2.BasicDataSource;  // Usual.
+import org.apache.commons.dbcp2.BasicDataSource;  // Usual.
 
-import org.apache.tomcat.dbcp.dbcp2.BasicDataSource; // Online.
+//import org.apache.tomcat.dbcp.dbcp2.BasicDataSource; // Online.
 
 /**
  * This class is probably not quite factory, hence the name.

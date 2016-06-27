@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import classes.User;
 import classes.question.Abstract.Question;
+import dao.QuizDAO;
+import factory.ClassFactory;
 
 /**
  * Servlet implementation class CreateQuiz
@@ -52,7 +55,8 @@ public class CreateQuiz extends HttpServlet {
 		User masterUser = (User)session.getAttribute("MasterUser");
 		ArrayList<Question> questions = (ArrayList<Question>)session.getAttribute("QuestionList");
 		
-		classes.Quiz newQuiz = new classes.Quiz(masterUser.getUserName(), name, description);
+		ClassFactory factory = (ClassFactory)request.getServletContext().getAttribute("factory");
+		classes.Quiz newQuiz = factory.getQuiz(masterUser.getUserName(), name, description);
 		newQuiz.setDateCreated(creationMillis);
 		newQuiz.setHasPracticeMode(practice);
 		newQuiz.setImmediatelyCorrected(correction);
@@ -60,6 +64,10 @@ public class CreateQuiz extends HttpServlet {
 		newQuiz.setRandom(random);
 		newQuiz.setQuizTime(numMinutes);
 		
+		QuizDAO quizDAO = (QuizDAO)request.getServletContext().getAttribute("quizDAO");
+		int id = quizDAO.addQuiz(newQuiz);
+		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("Quiz?id=" + id);
+		requestDispatcher.forward(request, response);	
 	}
-
 }

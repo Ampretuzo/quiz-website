@@ -1,3 +1,5 @@
+<%@page import="Listeners.SessionListener"%>
+<%@page import="classes.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -7,6 +9,11 @@
 <link rel="stylesheet" type="text/css" href="css/toppanel.css">
 </head>
 <body>
+
+<%
+	User masterUser = (User)session.getAttribute("MasterUser");
+	String userName = masterUser.getUserName();
+%>
 	<div id="toppanel">
 		<a href="index.jsp">
 			<img id="i" src="images/qmark.png">
@@ -19,7 +26,7 @@
 		</span>
 		 
 		 <span id="loggedinbox">
-		 	<p id="welcome"><% out.print("Welcome Home, " + "lado"); %></p>
+		 	<p id="welcome"><% out.print("Welcome Home, " + userName); %></p>
 		 	<div id="messagesbox">
 		 		<button class="loggedinbuttons" id="messages">Messages</button>
 				<div class="messages-dropdown">
