@@ -99,17 +99,6 @@ public class QuestionMCTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void illegalArgumentTest4() { 	
-		question.getGrade(userAnswer);
-	}
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void illegalArgumentTest5() { 
-		userAnswer.add(null);
-		question.getGrade(userAnswer);
-	}
-	
-	@Test(expected=IllegalArgumentException.class)
 	public void illegalArgumentTest6() { 
 		userAnswer = null;
 		question.getGrade(userAnswer);
