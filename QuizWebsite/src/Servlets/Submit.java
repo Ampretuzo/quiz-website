@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import classes.Answer;
+import classes.Result;
 import classes.question.Abstract.Question;
 
 /**
@@ -62,9 +63,7 @@ public class Submit extends HttpServlet {
 		int grade = questions.get(position).getGrade(userAnswer);
 		answer.setGrade(grade);
 
-		System.out.println(answer.toString());
-		
-		//List<Answer> answers = (List<Answer>)session.getAttribute("userAnswers");
-		//answers.set(position, answer);  // Might check it later.
+		Result result = (Result)session.getAttribute("Result");
+		result.getAnswers().add(position, answer);
 	}
 }
