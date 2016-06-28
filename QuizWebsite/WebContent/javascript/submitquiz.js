@@ -3,7 +3,13 @@
  */
 
 function submitQuiz(){
-	
+	var questions = document.getElementsByTagName("iframe");
+	for (var i=0;i<questions.length;i++){
+		var doc = questions[i].contentDocument;
+		var button = doc.getElementById("submit");
+		button.click();
+	}
+	window.location = "FinishQuiz";
 }
 
 function nextQuestion(){

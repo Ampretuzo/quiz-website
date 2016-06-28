@@ -11,4 +11,4 @@ function submit(servlet){
 			data: $("#form").serialize() 
 		}		
 	);
-}
+}s

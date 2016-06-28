@@ -104,11 +104,13 @@ create table notes(
 	time bigint
 );
 
+# result related below
+
 create table results(
-	id int(11) not null,
+	id int(11) not null auto_increment,
 	user_id int(11) not null,
 	quiz_id	int(11) not null,
-	score int(11) not null,
+	final_grade int(11) not null,
 	start_time bigint not null,
 	time_taken bigint not null,
 	primary key(id)

@@ -45,4 +45,8 @@ public class DAOInstances {
 		return new QuestionDAOImpl(dataSource);
 	}
 	
+	public ResultDAO getResultDAO() {
+		return new ResultDAOImpl(dataSource);
+	}
+	
 }

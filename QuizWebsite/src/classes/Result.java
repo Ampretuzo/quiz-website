@@ -1,11 +1,15 @@
 package classes;
 
+import java.util.List;
+
 public class Result {
+	
 	private int quizId;
 	private String userName;
 	private Integer finalGrade = null;
 	private long timeStarted; 
 	private long timeTaken;
+	private List<Answer> answers;
 	
 	public Result(String userName, int quizId)
 	{
@@ -50,5 +54,19 @@ public class Result {
 
 	public void setTimeTaken(long timeTaken) {
 		this.timeTaken = timeTaken;
+	}
+
+	/**
+	 * @return the answers
+	 */
+	public List<Answer> getAnswers() {
+		return answers;
+	}
+
+	/**
+	 * @param answers the answers to set
+	 */
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
 	}
 }

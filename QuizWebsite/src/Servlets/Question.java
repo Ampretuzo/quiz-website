@@ -29,10 +29,11 @@ public class Question extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = (Integer.parseInt(request.getParameter("id")));
+		ArrayList<Integer> positions = (ArrayList<Integer>)request.getSession().getAttribute("questionPositions");
 		ArrayList<classes.question.Abstract.Question> questions = (ArrayList<classes.question.Abstract.Question>)request.getSession().getAttribute("Questions");
-		String type = questions.get(id).getType();
+		String type = questions.get(positions.get(id)).getType();
 		
-		RequestDispatcher rd = request.getRequestDispatcher("Test/" + type + ".jsp?id=" + id);
+		RequestDispatcher rd = request.getRequestDispatcher("Test/" + type + ".jsp?id=" + positions.get(id));
 		rd.forward(request, response);	
 	}
 

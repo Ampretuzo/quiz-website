@@ -1,0 +1,67 @@
+@CHARSET "ISO-8859-1";
+
+#centerpanel {
+	position: absolute;
+	left: 0px;
+	top: 100px;
+	width: 100%;
+	min-width: 1200px;
+	height: calc(100% - 100px);
+	margin: 0px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}	
+
+#notebox {
+	position: absolute;
+	top: 10px;
+	left: calc(50% - 580px);
+	width: 800px;
+	height: 600px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	background: red;
+}
+
+#friendrequestbox {
+	overflow-y: auto;
+	overflow-x: hidden;
+	position: absolute;
+	top: 10px;
+	left: calc(50% + 240px);
+	width: 340px;
+	height: 290px;
+	background: green;	
+}
+
+#challengebox {
+	overflow-y: auto;
+	overflow-x: hidden;
+	position: absolute;
+	top: 320px;
+	left: calc(50% + 240px);
+	width: 340px;
+	height: 290px;
+	background: blue;	
+}
+
+.note , .noteSeen {
+	width: 100%;
+	height: 40px;
+	background: black;
+	color: white;
+}
+
+.challenge , .challengeSeen {
+	width: 100%;
+	height: 40px;
+	background: black;
+	color: white;
+}
+
+.request , .requestSeen {
+	width: 100%;
+	height: 40px;
+	background: black;
+	color: white;
+}

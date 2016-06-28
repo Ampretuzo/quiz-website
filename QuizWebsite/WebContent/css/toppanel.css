@@ -72,17 +72,23 @@ body , html {
 	right: 20px;
 }
 
+form {
+	display: inline-block;
+}
+
 .loggedinbuttons {
 	display: inline-block;
-	padding: 0px;
-	margin: -2px;
 	outline: 0px;
-	border: 1px solid grey;
+	border: none;
 	width: 100px;
 	height: 30px;
 	background-color: grey;
 	color:white;
 	cursor: pointer;
+}
+
+#messages {
+	width: 294px;
 }
 
 .loggedinbuttons:hover {
@@ -103,38 +109,5 @@ body , html {
 	font-size: 16px;
 	font-weight: 700;
 }
-
-.friends-dropdown , .messages-dropdown, .achievements-dropdown{
-	width: 200px;
-	height: 400px;
-	overflow: auto;
-	display: none;
-	position: absolute;
-	top: 28px;
-}
-
-.friends-dropdown  a, .messages-dropdown a , .achievements-dropdown a{
-	color: black;
-	padding: 5px 5px;
-	background-color: #e6e6e0;
-	display: block;
-	text-decoration: none;
-}
-
-#friendsbox:hover #friends ,  #achievementsbox:hover  #achievements, #messagesbox:hover #messages{
-	background-color: black;
-	color:white;
-}
-
-#friendsbox , #achievementsbox, #messagesbox{
-	position: relative;
-	display: inline-block;	
-}
-
-#friendsbox:hover  .friends-dropdown,  #achievementsbox:hover .achievements-dropdown , #messagesbox:hover .messages-dropdown{
-	display: block;
-}
-
-
 
 
