@@ -20,7 +20,7 @@ public class QuestionDAOImplTest {
 	public void setUp() throws Exception {
 		factory = new DAOInstances();
 		factory.init();
-		questionDAO = factory.getQuestionDAO();
+		//questionDAO = factory.getQuestionDAO();
 		classFactory = new ClassFactory();
 	}
 

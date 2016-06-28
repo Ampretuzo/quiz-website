@@ -2,13 +2,13 @@
  * 
  */
 
-function submit(servlet){
+function submit(questionID){
 	$.ajax(
 		{
 			async: false,
-			url: "../" + servlet,
+			url: "../Submit",
 			type: "POST",
-			data: $("#form").serialize() 
+			data: $("#form").serialize() + "&questionPosition=" + questionID
 		}		
 	);
 }

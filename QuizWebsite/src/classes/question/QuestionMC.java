@@ -46,8 +46,8 @@ public class QuestionMC extends Question {
 
 	@Override
 	public Integer getGrade(List<String> answer) {
-		if(answer == null ||  answer.isEmpty() || answer.get(0) == null) throw new IllegalArgumentException("Answer cannot be null!");
-		if(answer.get(0).equals(getCorrectAnswer())) return getMaxGrade();  
+		if(answer == null) throw new IllegalArgumentException("Answer cannot be null!");
+		if(!answer.isEmpty() && getCorrectAnswer().equals(answer.get(0)))return getMaxGrade();  
 		return 0;
 	}
 	

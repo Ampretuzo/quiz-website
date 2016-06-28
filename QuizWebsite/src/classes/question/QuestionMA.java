@@ -66,7 +66,7 @@ public class QuestionMA extends Question {
 		if(ordered)
 		{	
 			correctAnswersIterator = getAnswers().iterator();
-			while(answerIterator.hasNext())
+			while(answerIterator.hasNext() && correctAnswersIterator.hasNext())
 				if(correctAnswersIterator.next().contains(answerIterator.next())) grade += getGrade();
 		}
 		else

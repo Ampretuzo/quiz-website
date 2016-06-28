@@ -13,7 +13,8 @@
 </head>
 <body>
 	<% 
-		QuestionMA question = (QuestionMA) ((ArrayList<Question>) request.getSession().getAttribute("Questions")).get(Integer.parseInt(request.getParameter("id")));
+		int questionID = Integer.parseInt(request.getParameter("id"));
+		QuestionMA question = (QuestionMA) ((ArrayList<Question>) request.getSession().getAttribute("Questions")).get(questionID);
 	%>
 	<h2><%= question.getProblem() %></h2>
 	<p id="warning">Order does <% if (question.isOrdered()) out.print("NOT"); %> matter!</p> 
@@ -24,6 +25,6 @@
 			}
 		%>
 	</form>
-	<input id="submit" onclick="submit('SubmitMA');" type="hidden" />
+	<input id="submit" onclick="submit('<%= questionID %>')" type="hidden" />
 </body>
 </html>

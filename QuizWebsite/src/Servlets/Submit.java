@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import classes.Answer;
+import classes.question.Abstract.Question;
 
 /**
  * Servlet implementation class SubmitQR
@@ -41,18 +43,28 @@ public class Submit extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		List<String> userAnswer = new ArrayList<String>();
+		int numAnswers = (request.getParameterMap().keySet().size()-1);
 		int position = Integer.parseInt(request.getParameter("questionPosition"));
 		
-		String nextAnswer = "";
+		String nextAnswer = ""; 
 		for(int i = 0; ; i++)
 		{
+			if (0 == numAnswers) break;
 			nextAnswer = request.getParameter("answer" + i);
-			if (nextAnswer == null) break;
+			if (nextAnswer == null) continue;
 			userAnswer.add(nextAnswer);
+			numAnswers--;
 		}
-		System.out.println("Goes here");
+		
 		Answer answer = new Answer(userAnswer);
-		List<Answer> answers = (List<Answer>)session.getAttribute("userAnswers");
-		answers.set(position, answer);  // Might check it later.
+		
+		ArrayList<Question> questions = (ArrayList<Question>)session.getAttribute("Questions");
+		int grade = questions.get(position).getGrade(userAnswer);
+		answer.setGrade(grade);
+
+		System.out.println(answer.toString());
+		
+		//List<Answer> answers = (List<Answer>)session.getAttribute("userAnswers");
+		//answers.set(position, answer);  // Might check it later.
 	}
 }

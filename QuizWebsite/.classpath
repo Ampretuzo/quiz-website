@@ -14,8 +14,9 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="/home/sergi/eclipse third party/apache/commons DBCP/commons-dbcp2-2.1.1.jar"/>
-	<classpathentry kind="lib" path="/home/sergi/eclipse third party/apache/commons DBCP/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="/home/sergi/eclipse third party/apache/commons DBCP/commons-pool2-2.4.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Andrey Niedens/Desktop/apache-tomcat-8.0.35/mysql-connector-java-5.1.39/mysql-connector-java-5.1.39-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Andrey Niedens/Desktop/apache-tomcat-8.0.35/commons-logging-1.2/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Andrey Niedens/Desktop/apache-tomcat-8.0.35/commons-dbcp2-2.1.1/commons-dbcp2-2.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Andrey Niedens/Desktop/apache-tomcat-8.0.35/commons-pool2-2.4.2/commons-pool2-2.4.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

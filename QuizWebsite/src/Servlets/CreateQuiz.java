@@ -53,7 +53,6 @@ public class CreateQuiz extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		User masterUser = (User)session.getAttribute("MasterUser");
-		
 		ArrayList<Question> createdQuestions = (ArrayList<Question>)session.getAttribute("createdQuestions");
 		
 		ClassFactory factory = (ClassFactory)request.getServletContext().getAttribute("factory");

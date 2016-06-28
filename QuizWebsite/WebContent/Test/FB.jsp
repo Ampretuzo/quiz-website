@@ -14,7 +14,8 @@
 </head>
 <body>
 	<% 
-		QuestionFB question = (QuestionFB) ((ArrayList<Question>) request.getSession().getAttribute("Questions")).get(Integer.parseInt(request.getParameter("id")));
+		int questionID = Integer.parseInt(request.getParameter("id"));
+		QuestionFB question = (QuestionFB) ((ArrayList<Question>) request.getSession().getAttribute("Questions")).get(questionID);
 	%>
 	<h2><%= question.getProblem() %></h2>
 	<form id="form"  onkeypress="return event.keyCode != 13;">
@@ -31,6 +32,6 @@
 			}
 		%>
 	</form>
-	<input id="submit" onclick="submit('SubmitFB');" type="hidden" />
+	<input id="submit" onclick="submit('<%= questionID %>')" type="hidden" />
 </body>
 </html>

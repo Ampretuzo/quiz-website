@@ -14,6 +14,14 @@ public class Answer {
 		this.userAnswer = userAnswer;
 	}
 
+	@Override
+	public String toString() {
+		String answer = "";
+		for(int i = 0; i < getAnswer().size(); i ++)
+			answer += "Answer " + i + ": " + getAnswer().get(i) + " | ";
+		return "Answers: " + answer + ", Grade: " + getGrade();
+	}
+	
 	/**
 	 * Returns a list with all information about Answer.
 	 * @return answer.

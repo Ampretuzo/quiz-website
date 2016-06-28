@@ -41,6 +41,8 @@ public class TakeQuiz extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 * 
 	 * This servlet gets called when user starts taking a new quiz.
+	 * takenQuizId - quiz id that is taken from the DAO and put in session.
+	 * 
 	 * Creates a result.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -67,7 +69,7 @@ public class TakeQuiz extends HttpServlet {
 		//session.setAttribute("Questions", questions);
 		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("QuizMultiplePages.jsp");
-		//if(!takenQuiz.isOnePage()) requestDispatcher = request.getRequestDispatcher("QuizOnePage.jsp");
+		if(takenQuiz.isOnePage()) requestDispatcher = request.getRequestDispatcher("QuizOnePage.jsp");
 		requestDispatcher.forward(request, response);	
 	}
 }

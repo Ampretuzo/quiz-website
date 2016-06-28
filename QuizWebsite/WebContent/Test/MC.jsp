@@ -13,8 +13,9 @@
 </head>
 <body>
 	<% 
-		QuestionMC question = (QuestionMC) ((ArrayList<Question>) request.getSession().getAttribute("Questions")).get(Integer.parseInt(request.getParameter("id")));
-	%>
+	int questionID = Integer.parseInt(request.getParameter("id"));
+	QuestionMC question = (QuestionMC) ((ArrayList<Question>) request.getSession().getAttribute("Questions")).get(questionID);
+%>
 	<h2><%= question.getProblem() %></h2>
 	<form id="form"  onkeypress="return event.keyCode != 13;">
 		<%	
@@ -23,11 +24,11 @@
 			int i = 0;
 			while(it.hasNext()){
 				String choice = it.next();
-				out.print("<input type='radio' id='answer" + i + "' name='answer' value='" + choice +"'>" );
+				out.print("<input type='radio' id='answer" + i + "' name='answer0' value='" + choice +"'>" );
 				out.print(choice + "<br>");
 			}
 		%>
 	</form>
-	<input id="submit" onclick="submit('SubmitMC');" type="hidden" />
+	<input id="submit" onclick="submit('<%= questionID %>')" type="hidden" />
 </body>
 </html>

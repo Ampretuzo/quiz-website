@@ -32,10 +32,11 @@
 	<div id="centerpanel">
 	<br>
 <%	
+	ArrayList<Integer> positions = (ArrayList<Integer>) request.getSession().getAttribute("questionPositions");
 	ArrayList<Question> questions = (ArrayList<Question>) request.getSession().getAttribute("Questions");
 
-	for (int i=0;i<questions.size();i++){
-		out.print("<iframe name='question" + i + "' src='Test/" + questions.get(i).getType() + ".jsp?id=" + i + "' id='" + i + "' ></iframe>");
+	for (int i=0;i<positions.size();i++){
+		out.print("<iframe name='question" + positions.get(i) + "' src='Test/" + questions.get(positions.get(i)).getType() + ".jsp?id=" + i + "' id='" + positions.get(i) + "' ></iframe>");
 		out.print("<br><br>");
 	}
 %>

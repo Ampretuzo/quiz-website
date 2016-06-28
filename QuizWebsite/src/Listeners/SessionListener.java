@@ -66,12 +66,25 @@ public class SessionListener implements HttpSessionListener {
     	questions.add(new QuestionMCMA("ProblemMCMA", 5, correctAnswers, incorrectAnswers));
     	
     	Quiz quiz = new Quiz("creatorName", "Quizname", "Very good thank you");
+    	quiz.setOnePage(true);
     	
     	HttpSession s = arg0.getSession();
-    	s.setAttribute("Quiz", quiz);
+    	s.setAttribute("Quiz", quiz);  // Used in tests
     	s.setAttribute("Questions", questions);	
 
     	s.setAttribute("createdQuestions", null);
+    	
+    	ArrayList<Integer> positions = new ArrayList<Integer>();
+    	positions.add(0);
+    	positions.add(1);
+    	positions.add(2);
+    	positions.add(3);
+    	positions.add(4);
+    	
+    	s.setAttribute("questionPositions", positions);  // Order of questions user has to see.
+    	s.setAttribute("Result", null); // Result	
+    	
+    	s.setAttribute("userAnswers", null);
     	s.setAttribute("MasterUser", null);
     }
 

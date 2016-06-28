@@ -13,12 +13,13 @@
 </head>
 <body>
 	<% 
-		QuestionQR question = (QuestionQR) ((ArrayList<Question>) request.getSession().getAttribute("Questions")).get(Integer.parseInt(request.getParameter("id")));
-	%>
+	int questionID = Integer.parseInt(request.getParameter("id"));
+	QuestionQR question = (QuestionQR) ((ArrayList<Question>) request.getSession().getAttribute("Questions")).get(questionID);
+%>
 	<h2><%= question.getProblem() %></h2>
 	<form id="form"  onkeypress="return event.keyCode != 13;">
-		<input type="text" name="answer" id="answer">
+		<input type="text" name="answer0" id="answer">
 	</form>
-	<input id="submit" onclick="submit('SubmitQR');" type="hidden" />
+	<input id="submit" onclick="submit('<%= questionID %>')" type="hidden" />
 </body>
 </html>

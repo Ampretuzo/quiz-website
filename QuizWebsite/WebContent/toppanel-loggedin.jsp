@@ -13,6 +13,7 @@
 <%
 	User masterUser = (User)session.getAttribute("MasterUser");
 	String userName = masterUser.getUserName();
+	boolean hasUnseen = false;
 %>
 	<div id="toppanel">
 		<a href="index.jsp">
@@ -27,31 +28,10 @@
 		 
 		 <span id="loggedinbox">
 		 	<p id="welcome"><% out.print("Welcome Home, " + userName); %></p>
-		 	<div id="messagesbox">
-		 		<button class="loggedinbuttons" id="messages">Messages</button>
-				<div class="messages-dropdown">
-					<a href="">Jandaba3</a>
-					<a href="">Jandaba3</a>
-					<a href="">Jandaba3</a>
-				</div>
-			</div>
-			<div id="friendsbox">
-				<button class="loggedinbuttons" id="friends">Friends</button>
-				<div class="friends-dropdown">
-					<a href="">Jandaba1</a>
-					<a href="">Jandaba1</a>
-					<a href="">Jandaba1</a>
-				</div>
-			</div>
-			<div id="achievementsbox">
-				<button class="loggedinbuttons" id="achievements">Achievements</button>
-		 		<div class="achievements-dropdown">
-					<a href="">Jandaba2</a>
-					<a href="">Jandaba2</a>
-					<a href="">Jandaba2</a>
-				</div>
-		 	</div>
-		 	<form action="Logout" method="post" style="width: 0px;height:0px;display:inline-block;">
+		 	<form id="messagebox" action="Messages" method="post">
+		 		<button class="loggedinbuttons" id="messages" style=""><% if (hasUnseen) out.print("You've got unseen messages"); else out.print("Messages"); %></button>
+			</form>
+		 	<form action="Logout" method="post">
 		 		<button class="loggedinbuttons" id="logout">Logout</button>
 		 	</form>
 		 </span>
