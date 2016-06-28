@@ -27,7 +27,7 @@
 	
 	<div id="bottompanel">
 		<button id="nextquestion" onclick="nextQuestion();">Next Question</button>
-		<button id="submitquizz" onclick="finishQuiz();">Finish Quiz</button>
+		<button id="submitquizz" onclick="submitQuiz();">Finish Quiz</button>
 	</div>
 	
 	<div id="centerpanel">
