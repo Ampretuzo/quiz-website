@@ -66,6 +66,7 @@ public class SessionListener implements HttpSessionListener {
     	questions.add(new QuestionMCMA("ProblemMCMA", 5, correctAnswers, incorrectAnswers));
     	
     	Quiz quiz = new Quiz("creatorName", "Quizname", "Very good thank you");
+    	quiz.setMaxScore(500);
     	quiz.setOnePage(true);
     	
     	HttpSession s = arg0.getSession();

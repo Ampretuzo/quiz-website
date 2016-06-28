@@ -13,5 +13,4 @@ public interface QuestionDAO {
 	public void addMC(int quizId, QuestionMC mc);
 	
 	public List<Question> getQuestions(int quizId);
-
 }

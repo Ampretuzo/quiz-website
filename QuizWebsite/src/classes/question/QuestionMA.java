@@ -32,7 +32,7 @@ public class QuestionMA extends Question {
 	public String toString() {
 		String answers = "";
 		List<Set<String>> setAnswers = getAnswers();
-		Iterator iterator;
+		Iterator<String> iterator;
 		for (int i = 0; i < setAnswers.size(); i++)
 		{
 			iterator = setAnswers.get(i).iterator();

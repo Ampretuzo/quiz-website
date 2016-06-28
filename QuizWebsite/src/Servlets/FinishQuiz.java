@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,31 +32,39 @@ public class FinishQuiz extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	HttpSession session = request.getSession();
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 * 
-	 * This servlet gets called at the end of each quiz.
-	 * Takes finish time.
-	 * 
-	 */
+    	Date date = new Date();
+    	Result result = (Result)session.getAttribute("Result");
+    	result.setTimeTaken(result.getTimeStarted() - date.getTime());
+
+    	int finalGrade = 0;
+    	List<Answer> answers = result.getAnswers();
+    	for(Answer ans : answers) finalGrade += ans.getGrade();
+    	result.setFinalGrade(finalGrade);
+    	
+    	request.setAttribute("Result", result);
+		request.setAttribute("Quiz", session.getAttribute("Quiz"));
+    	// if not practice mode send to database.
+		
+//		//session.setAttribute("questionPositions", null);
+//		session.setAttribute("Result", null); 
+//		session.setAttribute("Questions", null); 
+//		session.setAttribute("Quiz", null);
+
+    	RequestDispatcher requestDispatcher = request.getRequestDispatcher("quizResult.jsp");
+    	requestDispatcher.forward(request, response);	
+    }
+
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     * 
+     * This servlet gets called at the end of each quiz.
+     * Takes finish time.
+     * 
+     */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		
-		Date date = new Date();
-		Result result = (Result)session.getAttribute("Result");
-		result.setTimeTaken(result.getTimeStarted() - date.getTime());
-		
-		int finalGrade = 0;
-		List<Answer> answers = result.getAnswers();
-		for(Answer ans : answers) finalGrade += ans.getGrade();
-		result.setFinalGrade(finalGrade);
-			
-		// if not practice mode send to database.						
-				
-				
-				
-				
 	}
 }

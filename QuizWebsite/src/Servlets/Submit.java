@@ -65,5 +65,6 @@ public class Submit extends HttpServlet {
 
 		Result result = (Result)session.getAttribute("Result");
 		result.getAnswers().add(position, answer);
+		System.out.println(answer.toString());
 	}
 }
