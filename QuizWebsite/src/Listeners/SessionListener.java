@@ -68,6 +68,7 @@ public class SessionListener implements HttpSessionListener {
     	Quiz quiz = new Quiz("creatorName", "Quizname", "Very good thank you");
     	quiz.setMaxScore(500);
     	quiz.setOnePage(true);
+    	quiz.setRandom(true);
     	
     	HttpSession s = arg0.getSession();
     	s.setAttribute("Quiz", quiz);  // Used in tests
