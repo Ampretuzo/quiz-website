@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div id="toppanel">
-		<a href="index.jsp">
+		<a href="index">
 			<img id="i" src="images/qmark.png">
 		</a>
 		<span id="searchbar">

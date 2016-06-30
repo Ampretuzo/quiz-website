@@ -22,9 +22,6 @@
 	Question:
 	<textarea type="text" cols="60" rows="6" name="statement"></textarea> <br>
 	
-	<button onclick="addLeft();">Add Left</button>
-	<button onclick="addRight();">Add Right</button>
-	
 	<div id="leftfield">
 		<input type="text" class="left" name="left0">
 	</div>
@@ -35,6 +32,9 @@
 	</div>
 	
 	</form>
+	
+	<button onclick="addLeft();">Add Left</button>
+	<button onclick="addRight();">Add Right</button>
 	<br><br>
 	
 	<input id="submit" onclick="submit('CreateMCH');" type="hidden" />

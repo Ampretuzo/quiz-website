@@ -39,7 +39,7 @@ public class Logout extends HttpServlet {
 		HttpSession s = request.getSession();
 		s.setAttribute("MasterUser", null);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("index");
 		rd.forward(request, response);
 	}
 }

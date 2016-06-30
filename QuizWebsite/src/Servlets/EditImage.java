@@ -1,8 +1,6 @@
 package Servlets;
 
 import java.io.IOException;
-import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,23 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import classes.User;
-import classes.Message.Announcement;
-import classes.Message.Note;
-import dao.MessageDAO;
-import factory.ClassFactory;
+import dao.UserDAO;
 
 /**
- * Servlet implementation class MakeAnnouncement
+ * Servlet implementation class EditImage
  */
-@WebServlet("/MakeAnnouncement")
-public class MakeAnnouncement extends HttpServlet {
+@WebServlet("/EditImage")
+public class EditImage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MakeAnnouncement() {
+    public EditImage() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -40,14 +36,10 @@ public class MakeAnnouncement extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getSession().getAttribute("MasterUser") == null) return;
-		String announcement = request.getParameter("announcement");
 		User master = (User) request.getSession().getAttribute("MasterUser");
-		ClassFactory factory = (ClassFactory) request.getServletContext().getAttribute("factory");
-		long date = (new Date()).getTime();
-		Announcement ann = factory.getAnnouncement(master.getUserName(),announcement,date);
-		MessageDAO mD = (MessageDAO) request.getAttribute("messageDAO");
-		mD.addAnnouncement(ann);
+		master.setImage(request.getParameter("image"));
+		UserDAO uD = (UserDAO) request.getServletContext().getAttribute("userDAO");
+		request.getSession().setAttribute("MasterUser", uD.updateUser(master));
 	}
 
 }

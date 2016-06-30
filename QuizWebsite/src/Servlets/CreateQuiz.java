@@ -13,7 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import classes.User;
+import classes.question.QuestionMA;
+import classes.question.QuestionMC;
+import classes.question.QuestionMCH;
+import classes.question.QuestionMCMA;
+import classes.question.QuestionPR;
+import classes.question.QuestionQR;
 import classes.question.Abstract.Question;
+import dao.QuestionDAO;
 import dao.QuizDAO;
 import factory.ClassFactory;
 
@@ -70,9 +77,22 @@ public class CreateQuiz extends HttpServlet {
 			System.out.println(createdQuestions.get(i).toString());
 			
 		QuizDAO quizDAO = (QuizDAO)request.getServletContext().getAttribute("quizDAO");
-	//	int id = quizDAO.addQuiz(newQuiz, createdQuestions); //TODO we put Quiz inside with questions.
+		QuestionDAO questionDAO = (QuestionDAO) request.getServletContext().getAttribute("questionDAO");
+	
 		int id = quizDAO.addQuiz(newQuiz);
 		
+		for (int i=0;i<createdQuestions.size();i++){
+			System.out.println(createdQuestions.get(i).toString());
+			switch(createdQuestions.get(i).getType()){
+				case "QR": questionDAO.addQR(id, (QuestionQR) createdQuestions.get(i)); break;
+				case "PR": questionDAO.addPR(id,(QuestionPR) createdQuestions.get(i)); break;
+				case "MC": questionDAO.addMC(id,(QuestionMC) createdQuestions.get(i)); break;
+				case "MA": questionDAO.addMA(id, (QuestionMA)createdQuestions.get(i)); break;
+				case "MCMA": questionDAO.addMCMA(id, (QuestionMCMA)createdQuestions.get(i)); break;
+				
+			}
+		}
+
 		createdQuestions.clear();
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("Quiz?id=" + id);
 		requestDispatcher.forward(request, response);	

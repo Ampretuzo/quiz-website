@@ -7,6 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/profile.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script type="text/javascript" src="javascript/addfriend.js"></script>
 <%
 
 	String toppanel; 
@@ -21,17 +23,15 @@
 </head>
 <body>
 	<div id="centerpanel">
-		<img id="profileimage" src="<%=  %>">
+		<img id="profileimage" src="<%= "asd" %>">
 		<span id="profilename"><%= user.getUserName() %></span>
 		<span id="description"><%= user.getDescription() %></span>
-		<a href="SendFriendRequest?getter=<%= user.getUserName() %>"  >
-		<button id="addfriendb"  <%= disabled %>>
+		<button id="addfriendb"  onclick="addFriend('<%= user.getUserName() %>')" <%= disabled %>>
 			<% 
 				if (disabled.equals("disabled")) out.print("Already your friend!"); 
 					else out.print("Add as a friend!"); 
 			%>
 		</button>
-		</a>
 		
 		<%
 			if (request.getSession().getAttribute("MasterUser")!=null && !user.equals(masterUser)) {
@@ -39,8 +39,9 @@
 				out.println("<button id='sendnote'>Send Note</button></a>");
 			}
 			
-			if (masterUser.equals(user)){
-				out.println("<button id='editdescr'>Edit Status</button>");
+			if (user.equals(masterUser)){
+				out.println("<a href='EditDescription?username=" + masterUser.getUserName() + "'><button id='editdescr'>Change Status</button></a>");
+				out.println("<a href='EditImage?username=" + masterUser.getUserName() + "'><button id='editpic'>Change Picture</button></a>");
 			}
 		%>
 		<div id="achievements">
@@ -63,16 +64,50 @@
 		<div id="createdquizzes">
 			<div class="divtitle">Created Quizzes:</div>
 			<div class="list">
-			<%
-				List<Quiz> quizzes = (List<Quiz>)request.getAttribute("createdQuizzes");
+			<%/*
+				List<Quiz> quizzes = (List<Quiz>) request.getAttribute("createdQuizzes");
 				for (Quiz quiz : quizzes){ 
 					out.println("<a href=\"Quiz?id=" + quiz.getId() + "\" ><div class=\"listentry\">" + quiz.getQuizName() + "</div></a>");	
-				}
+				}*/
 			%>
 			</div>
 		</div>
 	</div>
-	
+	<!-- 
+	<div id="secondbox">
+			<span id="friendsactivity">
+				<div class="divtitle">Friends Activity</div>
+				<div class="list">
+				<%
+					
+				%>
+				</div>
+			</span>
+			<span class="quizzes" id="recentlytakenquizzes">
+				<div class="divtitle">Recently Taken Quizzes</div>
+				<div class="list">
+				<%
+					
+				%>
+				</div>
+			</span>
+			<span class="quizzes" id="recentlycreatedquizzes">
+				<div class="divtitle">Recently Created Quizzes</div>
+				<div class="list">
+				<%
+					
+				%>
+				</div>
+			</span>
+			
+			<% 
+				if (request.getSession().getAttribute("MasterUser") == null){
+					out.println("<span id=\"loginlabel\">Log In to See More!</span>");		
+				}
+			%>
+			
+		</div>
+	 -->
 	<div id="toppanel">
 		<jsp:include page='<%= toppanel %>' />
 	</div>

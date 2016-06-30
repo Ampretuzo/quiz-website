@@ -4,28 +4,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="../css/header.css">
-<link rel="stylesheet" type="text/css" href="../css/createmessages.css">
-<title></title>
+<title>Insert title here</title>
 </head>
 <body>
 	<%
 		String toppanel; 
 		if (request.getSession().getAttribute("MasterUser") == null) toppanel = "/toppanel-loggedout.jsp";
 		else toppanel = "/toppanel-loggedin.jsp";
-		
 	%>
-	<div id="centerpanel">
 	<form action="SendNote" method="post">
-		<input type="hidden"  name="getter" value='<%= request.getParameter("getter") %>'>
 		Text: <textarea type="text" cols="60" rows="10" name="note" id="nt"></textarea>
 		<input type="submit" value="Send">
 	</form>
-	</div>
 	
 	<div id="toppanel">
 		<jsp:include page='<%= toppanel %>' />
 	</div>
-	
 </body>
 </html>

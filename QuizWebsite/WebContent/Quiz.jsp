@@ -25,7 +25,7 @@
 				out.print("<button id='editdescr'>Edit Description</button>");
 			}
 		%>
-		<a href="CreateChallenge?quizId=<%= quiz.getId() %>"><button id="sendchallenge">Challenge your Friends</button></a>
+		<a href="CreateChallenge.jsp?quizId=<%= quiz.getId() %>"><button id="sendchallenge">Challenge your Friends</button></a>
 		<div id="topscores">
 			<div class="divtitle">Top Scores:</div>
 			<div class="inf">

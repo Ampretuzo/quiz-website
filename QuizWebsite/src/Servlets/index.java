@@ -1,53 +1,51 @@
 package Servlets;
 
 import java.io.IOException;
-import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import classes.User;
-import classes.Message.Announcement;
-import classes.Message.Note;
+import Main.Constants;
 import dao.MessageDAO;
-import factory.ClassFactory;
+import dao.QuizDAO;
 
 /**
- * Servlet implementation class MakeAnnouncement
+ * Servlet implementation class index
  */
-@WebServlet("/MakeAnnouncement")
-public class MakeAnnouncement extends HttpServlet {
+@WebServlet("/index")
+public class index extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MakeAnnouncement() {
+    public index() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		MessageDAO mD = (MessageDAO) request.getServletContext().getAttribute("messageDAO");
+		QuizDAO qD = (QuizDAO) request.getServletContext().getAttribute("quizDAO");
+		request.setAttribute("Announcements", mD.getAnnouncements());
+		request.setAttribute("PopularQuizzes", qD.getPopularQuizzes(Constants.MAX_DISPLAY));
+		request.setAttribute("RecentQuizzes", qD.getRecentQuizzes(Constants.MAX_DISPLAY));
+		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getSession().getAttribute("MasterUser") == null) return;
-		String announcement = request.getParameter("announcement");
-		User master = (User) request.getSession().getAttribute("MasterUser");
-		ClassFactory factory = (ClassFactory) request.getServletContext().getAttribute("factory");
-		long date = (new Date()).getTime();
-		Announcement ann = factory.getAnnouncement(master.getUserName(),announcement,date);
-		MessageDAO mD = (MessageDAO) request.getAttribute("messageDAO");
-		mD.addAnnouncement(ann);
+		doGet(request,response);
 	}
 
 }

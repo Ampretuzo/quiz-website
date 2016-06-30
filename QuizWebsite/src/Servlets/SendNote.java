@@ -5,8 +5,10 @@ import java.util.Date;
 
 import classes.*;
 import classes.Message.*;
+import dao.MessageDAO;
 import factory.ClassFactory;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,8 +46,11 @@ public class SendNote extends HttpServlet {
 		User master = (User) request.getSession().getAttribute("MasterUser");
 		ClassFactory factory = (ClassFactory) request.getServletContext().getAttribute("factory");
 		long date = (new Date()).getTime();
-		Note req = factory.getNote(master.getUserName(), date, note, getterUsername);
-		// database 
+		Note nt = factory.getNote(master.getUserName(), date, note, getterUsername, false);
+		MessageDAO mD = (MessageDAO) request.getServletContext().getAttribute("messageDAO");
+		mD.addNote(nt);
+		RequestDispatcher rd = request.getRequestDispatcher("Profile?username=" + getterUsername);
+		rd.forward(request, response);
 	}
 
 }

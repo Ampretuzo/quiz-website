@@ -36,13 +36,18 @@
 	ArrayList<Question> questions = (ArrayList<Question>) request.getSession().getAttribute("Questions");
 
 	for (int i=0;i<positions.size();i++){
-		out.print("<iframe name='question" + positions.get(i) + "' src='Test/" + questions.get(positions.get(i)).getType() + ".jsp?id=" + i + "' id='" + positions.get(i) + "' ></iframe>");
+		out.print("<iframe name='question" + positions.get(i) + "' src='Question?id=" + positions.get(i) + "' id='" + i + "' ></iframe>");
 		out.print("<br><br>");
 	}
 %>
 
 	</div>
-
-	<script type="text/javascript"></script>
+	<input type="hidden" id="timeleft" value="<%= quiz.getQuizTime() %>">
+	<input type="hidden" id="num" value="<%= positions.size() %>">
+	
+	<script type="text/javascript">
+		var remaining = 60*1000 * document.getElementById("timeleft").value;
+		var startTime = new Date().getTime();
+	</script>
 </body>
 </html>

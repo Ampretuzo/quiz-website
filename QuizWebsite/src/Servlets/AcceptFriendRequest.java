@@ -1,6 +1,7 @@
 package Servlets;
 
 import java.io.IOException;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import classes.Message.Challenge;
 import classes.Message.FriendRequest;
+import dao.MessageDAO;
+import dao.UserDAO;
 
 /**
  * Servlet implementation class AcceptFriendRequest
@@ -40,10 +43,27 @@ public class AcceptFriendRequest extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int requestId = Integer.parseInt(request.getParameter("requestId"));
 		String status = request.getParameter("status");
-		FriendRequest ch = null; // get
-		//ch.setStatus(status);
-		// insrt to database
-		// insert friends into database
+		MessageDAO mD = (MessageDAO) request.getServletContext().getAttribute("messageDAO");
+		FriendRequest fr = mD.getFriendRequest(requestId);
+		fr.setStatus(status);
+		mD.addFriendRequest(fr);
+		
+		UserDAO uD = (UserDAO) request.getServletContext().getAttribute("userDAO");
+		classes.User master = (classes.User) request.getSession().getAttribute("MasterUser");
+		master = (classes.User) uD.getUser(master.getUserName());
+		classes.User getter = (classes.User) uD.getUser(fr.getSenderUserName());
+		
+		Set<String> friends = master.getFriends(); friends.add(fr.getSenderUserName());
+		master.setFriends(friends);
+		friends.remove(null);
+		
+		friends = getter.getFriends(); 
+		friends.add(fr.getGetterUserName());
+		getter.setFriends(friends);
+		friends.remove(null);
+		
+		uD.updateUser(master);
+		uD.updateUser(getter);
 	}
 
 }

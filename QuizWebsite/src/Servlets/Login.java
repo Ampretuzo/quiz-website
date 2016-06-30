@@ -56,7 +56,7 @@ public class Login extends HttpServlet {
 		if(user != null && hasher.hashPassword(password + user.getSalt()).equals(user.getHashedPassword()))
 		{
 			request.getSession().setAttribute("MasterUser", user);
-			dispatcher = request.getRequestDispatcher("index.jsp");
+			dispatcher = request.getRequestDispatcher("index");
 		}		
 		dispatcher.forward(request, response);
 	}

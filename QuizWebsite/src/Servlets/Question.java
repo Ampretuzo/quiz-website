@@ -31,9 +31,11 @@ public class Question extends HttpServlet {
 		int id = (Integer.parseInt(request.getParameter("id")));
 		ArrayList<Integer> positions = (ArrayList<Integer>)request.getSession().getAttribute("questionPositions");
 		ArrayList<classes.question.Abstract.Question> questions = (ArrayList<classes.question.Abstract.Question>)request.getSession().getAttribute("Questions");
-		String type = questions.get(positions.get(id)).getType();
-		
-		RequestDispatcher rd = request.getRequestDispatcher("Test/" + type + ".jsp?id=" + positions.get(id));
+		RequestDispatcher rd;
+		if (id<positions.size() && id>=0) {
+			String type = questions.get(positions.get(id)).getType();
+			rd = request.getRequestDispatcher("Test/" + type + ".jsp?id=" + positions.get(id));
+		} else rd = request.getRequestDispatcher("quizFinished.html");
 		rd.forward(request, response);	
 	}
 

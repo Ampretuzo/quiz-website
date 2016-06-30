@@ -1,32 +1,25 @@
 package Servlets;
 
 import java.io.IOException;
-import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import classes.User;
-import classes.Message.Announcement;
-import classes.Message.Note;
-import dao.MessageDAO;
-import factory.ClassFactory;
-
 /**
- * Servlet implementation class MakeAnnouncement
+ * Servlet implementation class MarkAsSeen
  */
-@WebServlet("/MakeAnnouncement")
-public class MakeAnnouncement extends HttpServlet {
+@WebServlet("/MarkAsSeen")
+public class MarkAsSeen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MakeAnnouncement() {
+    public MarkAsSeen() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -41,13 +34,11 @@ public class MakeAnnouncement extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (request.getSession().getAttribute("MasterUser") == null) return;
-		String announcement = request.getParameter("announcement");
-		User master = (User) request.getSession().getAttribute("MasterUser");
-		ClassFactory factory = (ClassFactory) request.getServletContext().getAttribute("factory");
-		long date = (new Date()).getTime();
-		Announcement ann = factory.getAnnouncement(master.getUserName(),announcement,date);
-		MessageDAO mD = (MessageDAO) request.getAttribute("messageDAO");
-		mD.addAnnouncement(ann);
+		int messageId = Integer.parseInt(request.getParameter("id"));
+		String type = request.getParameter("type");
+		
+		
+		
 	}
 
 }

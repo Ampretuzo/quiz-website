@@ -33,18 +33,8 @@ public class Profile extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 * Takes user Id as parameter and goes to Profile.jsp if found and 
-	 * 
-	 * 
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userName = request.getParameter("username");
-		
+		System.out.println(userName);
 		RequestDispatcher dispatcher;
 		ServletContext ctx= getServletContext();  
 		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");
@@ -61,5 +51,15 @@ public class Profile extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("Profile.jsp?username=" + userName);
 		}
 		dispatcher.forward(request, response);	
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Takes user Id as parameter and goes to Profile.jsp if found and 
+	 * 
+	 * 
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 }

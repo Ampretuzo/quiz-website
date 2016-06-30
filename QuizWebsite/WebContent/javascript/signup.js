@@ -8,7 +8,7 @@ function login(){
 			password : $('input#password').val(),
 		}
 	});
-	window.location = "index.jsp";
+	window.location = "index";
 }
 
 $().ready(function(){

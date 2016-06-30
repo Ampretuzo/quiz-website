@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import classes.User;
+import dao.MessageDAO;
+
 /**
  * Servlet implementation class Messages
  */
@@ -35,10 +38,11 @@ public class Messages extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// database
-		request.setAttribute("Notes", null);
-		request.setAttribute("Challenges", null);
-		request.setAttribute("FriendRequests", null);
+		User master = (User)request.getSession().getAttribute("MasterUser");
+		MessageDAO mD = (MessageDAO) request.getServletContext().getAttribute("messageDAO");
+		request.setAttribute("Notes", mD.getNotes(master.getUserName()));
+		request.setAttribute("Challenges", mD.getChallenges(master.getUserName()));
+		request.setAttribute("FriendRequests", mD.getFriendRequests(master.getUserName()));
 		RequestDispatcher rd = request.getRequestDispatcher("Messages.jsp");
 		rd.forward(request,response);
 	}
