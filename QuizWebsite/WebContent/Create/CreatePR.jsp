@@ -19,9 +19,10 @@
 </head>
 <body>
 	<form id="form" onkeypress="return event.keyCode != 13;">
-	Upload a Picture: <input type="file" accept="image/*" name="image"> <br>
-	Or Use External URL(Less Priority, Less Reliable, Could be lost!): 
-		<input type="text"  size="55" name="externalURL"> <br> <br>
+	Question Grade: <input type="text" name="grade" id="grade"> <br><br>
+	<!-- Upload a Picture: <input type="file" accept="image/*" name="image"> <br> 
+	Or Use External URL(Less Priority, Less Reliable, Could be lost!): -->
+	Link a Picture:	<input type="text"  size="55" name="externalURL"> <br> <br>
 	Question:<br>
 	<textarea type="text" cols="60" rows="6" name="statement"></textarea> <br>
 	Correct Answers:

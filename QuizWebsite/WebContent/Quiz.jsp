@@ -12,6 +12,13 @@
 		else toppanel = "toppanel-loggedin.jsp";
 	
 	Quiz quiz = (Quiz)request.getAttribute("Quiz");
+	
+	if (request.getSession().getAttribute("MasterUser")!=null && (boolean)request.getSession().getAttribute("isAdmin")) {
+		out.println("<a href='DeleteQuiz?id=" + quiz.getId() + "'>");
+		out.println("<button id='deletequiz'>Delete Quiz</button></a>");
+	}
+	
+	
 %>
 <title><%= quiz.getQuizName() %></title>
 </head>
@@ -57,10 +64,13 @@
 			%>
 			</div>
 		</div>
-		
+		<%
+			String disabled = "";
+			if (request.getSession().getAttribute("MasterUser")==null) disabled = "disabled";
+		%>
 		<form action="TakeQuiz" method="post">
-			<input type="hidden" name="id" value='<%= quiz.getId() %>'>
-			<button id="startquiz">Start Quiz</button>
+			<input type="hidden" name="id" value='<%= quiz.getId() %>' >
+			<button id="startquiz"  <%= disabled %>>Start Quiz</button>
 		</form>
 	</div>
 	

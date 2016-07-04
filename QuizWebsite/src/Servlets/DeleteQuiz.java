@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import classes.User;
-import dao.MessageDAO;
+import dao.QuizDAO;
+import dao.ResultDAO;
 
 /**
- * Servlet implementation class Messages
+ * Servlet implementation class DeleteQuiz
  */
-@WebServlet("/Messages")
-public class Messages extends HttpServlet {
+@WebServlet("/DeleteQuiz")
+public class DeleteQuiz extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Messages() {
+    public DeleteQuiz() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,21 +31,20 @@ public class Messages extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		User master = (User)request.getSession().getAttribute("MasterUser");
-		MessageDAO mD = (MessageDAO) request.getServletContext().getAttribute("messageDAO");
-		request.setAttribute("Notes", mD.getNotes(master.getUserName()));
-		request.setAttribute("Challenges", mD.getChallenges(master.getUserName()));
-		request.setAttribute("FriendRequests", mD.getFriendRequests(master.getUserName()));
 		
-		RequestDispatcher rd = request.getRequestDispatcher("Messages.jsp");
-		rd.forward(request,response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		int quizId = Integer.parseInt(request.getParameter("quizId"));
+		QuizDAO quizDao= (QuizDAO)request.getServletContext().getAttribute("quizDAO");
+		quizDao.deleteQuiz(quizId);
+		ResultDAO resultDAO = (ResultDAO)request.getServletContext().getAttribute("resultDAO");
+		resultDAO.removeHistory(quizId);
+		RequestDispatcher rd = request.getRequestDispatcher("index");
+		rd.forward(request, response);		
 	}
 
 }

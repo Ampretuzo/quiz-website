@@ -1,6 +1,5 @@
 @CHARSET "ISO-8859-1";
 
-
 #centerpanel {
 	min-width: 1200px;
 	width: 100%;
@@ -8,7 +7,36 @@
 	position: absolute;
 	top: 100px;
 	left: 0px;
-	background: yellow;
+	background: #e6e6e6;
 	overflow-y: auto;
 	overflow-x: hidden;
+	font-size: 20px;
+}
+
+#field {
+	position: absolute;
+	top: 30px;
+	left: 400px;
+}
+
+textarea {
+	position: absolute;
+	top: 20px;
+	left: calc(50% - 350px);
+	width: 700px;
+	height: 400px;
+	resize: none;
+}
+
+#send {
+	width: 200px;
+	height: 50px;
+}
+
+#buttn {
+	position: absolute;
+	top: 450px;
+	width: 200px;
+	height: 50px;
+	left: calc(50% - 100px);
 }

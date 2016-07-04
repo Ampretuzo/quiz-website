@@ -12,7 +12,7 @@
 <script type="text/javascript" src="javascript/submitquiz.js"></script>
 <%
 	Quiz quiz = (Quiz) request.getSession().getAttribute("Quiz");
-ArrayList<Integer> positions = (ArrayList<Integer>) request.getSession().getAttribute("questionPositions");
+	ArrayList<Integer> positions = (ArrayList<Integer>) request.getSession().getAttribute("questionPositions");
 %>
 <title><%= quiz.getQuizName() %></title>
 </head>

@@ -1,28 +1,27 @@
 package Servlets;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import classes.User;
-import dao.MessageDAO;
+import org.apache.catalina.User;
+
+import dao.UserDAO;
 
 /**
- * Servlet implementation class Messages
+ * Servlet implementation class DeleteFriend
  */
-@WebServlet("/Messages")
-public class Messages extends HttpServlet {
+@WebServlet("/DeleteFriend")
+public class DeleteFriend extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Messages() {
+    public DeleteFriend() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,21 +30,19 @@ public class Messages extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		User master = (User)request.getSession().getAttribute("MasterUser");
-		MessageDAO mD = (MessageDAO) request.getServletContext().getAttribute("messageDAO");
-		request.setAttribute("Notes", mD.getNotes(master.getUserName()));
-		request.setAttribute("Challenges", mD.getChallenges(master.getUserName()));
-		request.setAttribute("FriendRequests", mD.getFriendRequests(master.getUserName()));
 		
-		RequestDispatcher rd = request.getRequestDispatcher("Messages.jsp");
-		rd.forward(request,response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String friend = request.getParameter("user");
+		classes.User master = (classes.User) request.getSession().getAttribute("MasterUser");
+		UserDAO userDao= (UserDAO)request.getServletContext().getAttribute("userDAO");
+		userDao.removeFriendship(friend, master.getUserName());
 		
+		response.sendRedirect("Profile?username=" + friend);
 	}
 
 }

@@ -1,0 +1,34 @@
+@CHARSET "ISO-8859-1";
+
+#centerpanel {
+	min-width: 1200px;
+	width: 100%;
+	height: calc(100% - 120px);
+	position: absolute;
+	top: 100px;
+	left: 0px;
+	background: #e6e6e6;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#edit {
+	position: absolute;
+	left: 50px;
+	top: 20px;
+}
+
+input {
+	margin: 3px 0px 3px 0px;
+}
+textarea {
+	resize: none;
+	width: 500px;
+}
+#url {
+	width: 500px;
+}
+#subm {
+	width: 100px;
+	height: 30px;
+}

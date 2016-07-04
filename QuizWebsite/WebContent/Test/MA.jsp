@@ -17,11 +17,11 @@
 		QuestionMA question = (QuestionMA) ((ArrayList<Question>) request.getSession().getAttribute("Questions")).get(questionID);
 	%>
 	<h2><%= question.getProblem() %></h2>
-	<p id="warning">Order does <% if (question.isOrdered()) out.print("NOT"); %> matter!</p> 
+	<p id="warning">Order DOES <% if (!question.isOrdered()) out.print("NOT"); %> matter!</p> 
 	<form id="form"  onkeypress="return event.keyCode != 13;">
 		<%
 			for (int i=0;i<question.getNumAnswers();i++){
-				out.print("<input type='text' id='answer" + i + "' name='answer" + i +"'>" );
+				out.print("<input type='text' id='answer" + i + "' name='answer" + i +"'> <br>" );
 			}
 		%>
 	</form>

@@ -12,10 +12,9 @@
 			<img id="i" src="images/qmark.png">
 		</a>
 		<span id="searchbar">
-			<form id="searchform" action="Search" method="post">
-				<input type="text" id="searchfield" placeholder="Search">
-				<button type="submit" id="searchbutton">Search</button>
-			</form>
+			<input type="text" id="searchfield" name="search" placeholder="Search">
+				<button type="submit" id="searchquiz" onclick="searchQuiz()">Search Quiz</button>
+				<button type="submit" id="searchprofile" onclick="searchProfile()">Search Profile</button>
 		</span>
 		
 		<span id="loginbox">
@@ -34,6 +33,15 @@
 	
 		 
 	</div>
-	<script> function signUp(){ window.location = "signup.jsp";} </script>
+	
+	<script type="text/javascript">
+		function signUp(){ window.location = "signup.jsp";} 
+		function searchProfile(){
+			window.location = "Profile?username=" + document.getElementById("searchfield").value;
+		}
+		function searchQuiz(parameter){
+			window.location = "Quiz?quizname=" + document.getElementById("searchfield").value;
+		}
+		</script>
 </body>
 </html>

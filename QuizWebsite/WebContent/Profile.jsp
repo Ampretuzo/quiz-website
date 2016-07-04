@@ -43,12 +43,14 @@
 				out.println("<a href='EditDescription?username=" + masterUser.getUserName() + "'><button id='editdescr'>Change Status</button></a>");
 				out.println("<a href='EditImage?username=" + masterUser.getUserName() + "'><button id='editpic'>Change Picture</button></a>");
 			}
+			
+			if (request.getSession().getAttribute("MasterUser")!=null && (boolean)request.getSession().getAttribute("isAdmin")) {
+				out.println("<a href='MakeAdmin?username=" + user.getUserName() + "'>");
+				out.println("<button id='makeadmin'>Make Admin</button></a>");
+				out.println("<a href='DeleteAccount?username=" + user.getUserName() + "'>");
+				out.println("<button id='deleteacc'>Delete Account</button></a>");
+			}
 		%>
-		<div id="achievements">
-			<%
-				// achevements
-			%>
-		</div>
 		
 		<div id="friendslist">
 			<div class="divtitle">Friends:</div>
@@ -64,22 +66,22 @@
 		<div id="createdquizzes">
 			<div class="divtitle">Created Quizzes:</div>
 			<div class="list">
-			<%/*
+			<%
 				List<Quiz> quizzes = (List<Quiz>) request.getAttribute("createdQuizzes");
-				for (Quiz quiz : quizzes){ 
-					out.println("<a href=\"Quiz?id=" + quiz.getId() + "\" ><div class=\"listentry\">" + quiz.getQuizName() + "</div></a>");	
-				}*/
+				for (int i=0;i<quizzes.size();i++){ 
+					out.println("<a href=\"Quiz?id=" + quizzes.get(i).getId() + "\" ><div class=\"listentry\">" + quizzes.get(i).getQuizName() + "</div></a>");	
+				}
 			%>
 			</div>
 		</div>
-	</div>
-	<!-- 
-	<div id="secondbox">
 			<span id="friendsactivity">
 				<div class="divtitle">Friends Activity</div>
 				<div class="list">
 				<%
-					
+					List<Quiz> activity = (List<Quiz>) request.getAttribute("friendsActivity");
+					for (int i=0;i<quizzes.size();i++){ 
+						out.println("<a href=\"Quiz?id=" + quizzes.get(i).getId() + "\" ><div class=\"listentry\">" + quizzes.get(i).getQuizName() + "</div></a>");	
+					}
 				%>
 				</div>
 			</span>
@@ -87,7 +89,10 @@
 				<div class="divtitle">Recently Taken Quizzes</div>
 				<div class="list">
 				<%
-					
+					quizzes = (List<Quiz>) request.getAttribute("recentQuizzes");
+					for (int i=0;i<quizzes.size();i++){ 
+						out.println("<a href=\"Quiz?id=" + quizzes.get(i).getId() + "\" ><div class=\"listentry\">" + quizzes.get(i).getQuizName() + "</div></a>");	
+					}
 				%>
 				</div>
 			</span>
@@ -95,19 +100,19 @@
 				<div class="divtitle">Recently Created Quizzes</div>
 				<div class="list">
 				<%
-					
+					quizzes = (List<Quiz>) request.getAttribute("createdQuizzes");
+					for (int i=0;i<quizzes.size();i++){ 
+						out.println("<a href=\"Quiz?id=" + quizzes.get(i).getId() + "\" ><div class=\"listentry\">" + quizzes.get(i).getQuizName() + "</div></a>");	
+					}
 				%>
 				</div>
 			</span>
 			
-			<% 
-				if (request.getSession().getAttribute("MasterUser") == null){
-					out.println("<span id=\"loginlabel\">Log In to See More!</span>");		
-				}
-			%>
-			
 		</div>
-	 -->
+	
+	
+	
+	
 	<div id="toppanel">
 		<jsp:include page='<%= toppanel %>' />
 	</div>

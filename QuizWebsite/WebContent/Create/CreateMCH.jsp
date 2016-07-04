@@ -19,45 +19,52 @@
 </head>
 <body>
 	<form id="form" onkeypress="return event.keyCode != 13;">
+	Question Grade: <input type="text" name="grade" id="grade"> <br><br>
 	Question:
 	<textarea type="text" cols="60" rows="6" name="statement"></textarea> <br>
 	
 	<div id="leftfield">
-		<input type="text" class="left" name="left0">
+		<input type="text" class="left" name="question0">
 	</div>
 	
 	<div id="rightfield">
-		<input type="text" class="right" name="right0"> 
-		<input type="text" class="answer" name="answer0" size="3">
+		<input type="text" class="right" name="rightanswer0"> 
+	</div>
+	
+	<div id="wrongfield">
+		
 	</div>
 	
 	</form>
 	
-	<button onclick="addLeft();">Add Left</button>
-	<button onclick="addRight();">Add Right</button>
+	<button id="addl" onclick="addPair();">Add Pair</button>
+	<button id="addw" onclick="addWrong();">Add Wrong</button>
 	<br><br>
 	
 	<input id="submit" onclick="submit('CreateMCH');" type="hidden" />
 	
+	
+	
 	<script type="text/javascript">
-		var countleft = 1;
-		var countright = 1;
-		function addLeft(){
+		var countPair = 1;
+		var wrong = 0;
+		function addPair(){
 			var field = document.createElement("input");
-			field.name = "left" + countleft; field.type = "text"; field.className = "left";
-			//document.getElementById('leftfield').appendChild(document.createElement("br"));
+			field.name = "question" + countPair; field.type = "text"; field.className = "left";
 			document.getElementById('leftfield').appendChild(field);
-			countleft++;
-		}
-		function addRight(){
-			var field = document.createElement("input");
-			field.name = "right" + countright; field.type = "text"; field.className = "right";
-			var correct = document.createElement("input");
-			correct.name = "answer" + countright; correct.type = "text"; correct.className = "answer"; correct.size = "3";
-			//document.getElementById('rightfield').appendChild(document.createElement("br"));
+			
+			field = document.createElement("input");
+			field.name = "rightanswer" + countPair; field.type = "text"; field.className = "right";
 			document.getElementById('rightfield').appendChild(field);
-			document.getElementById('rightfield').appendChild(correct);
-			countright++;
+			
+			countPair++;
+		}
+		function addWrong(){
+			var field = document.createElement("input");
+			field.name = "wronganswer" + wrong; field.type = "text"; field.className = "wrong";
+			document.getElementById('wrongfield').appendChild(field);
+			
+			wrong++;
 		}
 	</script>
 	

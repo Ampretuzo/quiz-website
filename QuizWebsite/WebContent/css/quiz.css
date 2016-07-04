@@ -38,6 +38,20 @@
 	color: white; 
 }
 
+#deletequiz {
+	position: absolute;
+	top: 103px;
+	left: 5px;
+	width: 160px;
+	height: 40px;
+	border: none;
+	padding: 5px 5px;
+	background: grey;
+	font-size: 14px;
+	font-weight: 500;
+	color: White;	
+}
+
 .inf {
 	position: absolute;
 	top: 30px;
@@ -49,7 +63,7 @@
 
 .usrname, .timetaken, .scr {
 	display: inline-block;
-	width: 380px;
+	width: 370px;
 	height: 20px;
 	color: white;
 	font-size: 18px;

@@ -14,5 +14,10 @@
 	%>
 	<h1>Your Score: <%= result.getFinalGrade() %>/<%= quiz.getMaxScore() %> </h1>
 	<h2>Time Taken: <%= result.getTimeTaken()/(1000*60) %>mins</h2>
+	
+	<%
+		if (session.getAttribute("Challenger")!=null) out.print("<h2>" +session.getAttribute("Challenger") + "'s Hight Score was: " +
+				session.getAttribute("ChallengerScore") + "/" + quiz.getMaxScore()  +" </h2>");
+	%>
 </body>
 </html>

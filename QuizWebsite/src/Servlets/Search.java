@@ -34,8 +34,6 @@ public class Search extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userName = request.getParameter("searchfield");
-		RequestDispatcher rd = request.getRequestDispatcher("Profile?username=" + userName);
-		rd.forward(request, response);		
+			
 	}
 }

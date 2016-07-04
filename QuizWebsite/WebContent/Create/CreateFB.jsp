@@ -17,6 +17,7 @@
 </head>
 <body>
 	<form id="form" onkeypress="return event.keyCode != 13;">
+		Question Grade: <input type="text" name="grade" id="grade"> <br> <br>
 		Text:
 		<textarea type="text" cols="60" rows="6" name="statement" id="stmnt"></textarea> <br>
 		Correct Answers:<br>
@@ -39,7 +40,7 @@
 			document.getElementById(i).appendChild(field);
 		}
 		function addAnsField(){
-			document.getElementById('stmnt').value += " ______ ";
+			document.getElementById('stmnt').value += " _____ ";
 			document.getElementById('stmnt').focus();
 			var field = document.createElement("span");
 			field.className = "entry"; field.id = count;

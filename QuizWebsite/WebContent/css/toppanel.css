@@ -11,7 +11,8 @@ body , html {
 }
 
 #toppanel {
-	background: linear-gradient(to right, black, white);
+	/*background: linear-gradient(to right, black, white);*/
+	background: grey;
 	position: absolute;
 	top: 0px;
 	left: 0px;
@@ -33,27 +34,32 @@ body , html {
 	padding-left: 10px;
 	margin: 0px;
 	position: absolute;
-	top: 35px;
-	left: 100px;
-	width: 490px;
+	top: 25px;
+	left: 200px;
+	width: 500px;
+	text-align: center;
 	height: 30px;
 	background-color: #e6e6e6;
 }
 
-#searchbutton {
-	margin: 2px 2px;
-	outline: 0;
-	padding: 0px;
-	margin: 0px;
-	border: none;
-	position: absolute;
-	top: 35px;
-	left: 600px;
-	width: 50px;
+#searchquiz, #searchprofile {
+	width: 100px;
 	height: 30px;
-	background-color: black;
-	color:white;
-	cursor: pointer;
+	border: none;
+	outline: 0;
+	background: black;
+	color: white;
+	position: absolute;
+	left: 349px;
+	top: 57px;
+}
+#searchquiz {
+	left: 451px;
+}
+
+#searchquiz:hover, #searchprofile:hover {
+	background: white;
+	color: black;
 }
 
 #loginbox {
@@ -96,8 +102,16 @@ form {
 	color:white;
 }
 
+#logout, #notes {
+	width: 70px;
+}
+
+#friendrequests {
+	width: 130px;
+}
+
 #loggedinbox {
-	min-width: 400px;
+	min-width: 410px;
 	width: 400px;
 	height: 100px;
 	position: absolute;
@@ -107,6 +121,8 @@ form {
 
 #welcome {
 	font-size: 16px;
+	position: relative;
+	left: 20px;
 	font-weight: 700;
 }
 

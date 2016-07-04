@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import classes.User;
+import dao.MessageDAO;
+
 /**
  * Servlet implementation class MarkAsSeen
  */
@@ -33,11 +36,22 @@ public class MarkAsSeen extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getSession().getAttribute("MasterUser") == null) return;
+		User master = (User)request.getSession().getAttribute("MasterUser");
+		if (master == null) return;
 		int messageId = Integer.parseInt(request.getParameter("id"));
 		String type = request.getParameter("type");
+		MessageDAO mD = (MessageDAO) request.getServletContext().getAttribute("messageDAO");
 		
 		
+		
+		if (type.equals("Challenge")) {
+			mD.seenChallenge(messageId);
+		} else if (type.equals("Note")) {
+			System.out.println(type);
+			if (!master.getUserName().equals(mD.getNote(messageId).getSenderUserName())) {mD.seenNote(messageId);System.out.println("yle");}
+		} else {
+			mD.seenFriendRequest(messageId);
+		}
 		
 	}
 

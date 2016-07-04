@@ -22,7 +22,6 @@ function nextQuestion(){
 	var url = document.getElementById("iframe").src;
 	var num = parseInt(url.substring(url.indexOf("?id=") + 4)) + 1;
 	var doc = document.getElementById("iframe").contentDocument;
-	
 	doc.getElementById("submit").click();
 	setTimeout(function(){
 		document.getElementById("iframe").src = "Question?id=" + num;

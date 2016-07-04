@@ -32,19 +32,31 @@ public class Quiz extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int quizId = Integer.parseInt(request.getParameter("id"));
-		QuizDAO quizDAO = (QuizDAO)request.getServletContext().getAttribute("quizDAO");
-		classes.Quiz quiz = quizDAO.getQuiz(quizId);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("Quiz.jsp");
-		if (quiz == null) requestDispatcher = request.getRequestDispatcher("notFound.jsp");
+		String id = request.getParameter("id");
+		String quizName = request.getParameter("quizname");
 		
+		QuizDAO quizDAO = (QuizDAO)request.getServletContext().getAttribute("quizDAO");
+		
+		if (id != null) {
+			int quizId = Integer.parseInt(id);
+			classes.Quiz quiz = quizDAO.getQuiz(quizId);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("Quiz.jsp");
+			if (quiz == null) requestDispatcher = request.getRequestDispatcher("notFound.jsp");
+			System.out.println("Taken out quiz: " + quiz.toString());
+			request.setAttribute("Quiz", quiz);
+			
+			requestDispatcher.forward(request, response);	
+		} else {
+			List<Integer> quizzes = null;// quizDAO.		
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("quizSearchResults.jsp");
+			request.setAttribute("Quizzes", quizzes);
+		}
+		
+			
 		//QuestionDAO questionDAO = (QuestionDAO)request.getServletContext().getAttribute("questionDAO");
 		//List<classes.question.Abstract.Question> questions = questionDAO.getQuestions(quizId);
 		//request.setAttribute("Questions", questions);
-		System.out.println("Taken out quiz: " + quiz.toString());
-		request.setAttribute("Quiz", quiz);
 		
-		requestDispatcher.forward(request, response);	
 	}
 
 	/**

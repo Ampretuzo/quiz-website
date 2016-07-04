@@ -1,7 +1,7 @@
 package Servlets;
 
 import java.io.IOException;
-import java.util.Date;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,24 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Main.PasswordHasher;
 import classes.User;
-import classes.Message.Announcement;
-import classes.Message.Note;
-import dao.MessageDAO;
-import factory.ClassFactory;
 
 /**
- * Servlet implementation class MakeAnnouncement
+ * Servlet implementation class CheckPassword
  */
-@WebServlet("/MakeAnnouncement")
-public class MakeAnnouncement extends HttpServlet {
+@WebServlet("/CheckPassword")
+public class CheckPassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MakeAnnouncement() {
+    public CheckPassword() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -40,16 +38,16 @@ public class MakeAnnouncement extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getSession().getAttribute("MasterUser") == null) return;
-		String announcement = request.getParameter("announcement");
-		User master = (User) request.getSession().getAttribute("MasterUser");
-		ClassFactory factory = (ClassFactory) request.getServletContext().getAttribute("factory");
-		long date = (new Date()).getTime();
-		Announcement ann = factory.getAnnouncement(master.getUserName(),announcement,date);
-		MessageDAO mD = (MessageDAO) request.getServletContext().getAttribute("messageDAO");
-		mD.addAnnouncement(ann);
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		
-		response.sendRedirect("index");
+		String pass = request.getParameter("password");
+		PasswordHasher hasher = (PasswordHasher)request.getServletContext().getAttribute("hasher");
+		User master = (User)request.getSession().getAttribute("MasterUser");
+		
+		if (!hasher.hashPassword(pass + master.getSalt()).equals( master.getHashedPassword())) {
+			out.println("NO");
+		}  else out.println("YES");
 	}
 
 }

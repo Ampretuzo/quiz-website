@@ -22,15 +22,15 @@
 	
 	request.getSession().setAttribute("createdQuestions", new ArrayList<Question>());
 %>
-	<div id="centerpanel">
+	<div id="centerpanel">j
 		<form id="infoform" action="CreateQuiz" method="post">
-			Title: <input type="text" id="name" name="name"> <br>
-			Description: <textarea cols="60" rows="4" name="description" id="desc"></textarea> <br> 
-			Random? <input type="checkbox" id="random" name="random"> <br>
-			Display on One Page? <input type="checkbox" id="onepage" name="onepage"> <br>
-			Practice mode? <input type="checkbox" id="practice" name="practice"> <br>
-			Immediate Correction? <input type="checkbox" id="imcorr" name="correction"> <br>
-			Max Time = <input type="text" id="time" name="time">mins
+			<input type="text" id="name" name="name" Placeholder="  Quiz Name"> <br> <br>
+			<textarea cols="60" rows="4" name="description" id="desc" Placeholder=" Description"></textarea> <br> <br> 
+			Random?              :<input type="checkbox" id="random" name="random"> <br>
+			Display on One Page? :<input type="checkbox" id="onepage" name="onepage"> <br>
+			Practice mode?       :<input type="checkbox" id="practice" name="practice"> <br>
+			Immediate Correction?: <input type="checkbox" id="imcorr" name="correction"> <br> <br>
+			Max Time: <input type="text" id="time" name="time">minutes <br> <br> <br> <br>
 		</form>
 		<div id="questions"></div>
 	</div>
@@ -38,7 +38,7 @@
 		<button class="questionbuttons" onclick="addQuestion('CreateFB')">Fill in the Blanks</button>
 		<button class="questionbuttons" onclick="addQuestion('CreateMA')">Multiple Answer</button>
 		<button class="questionbuttons" onclick="addQuestion('CreateMC')">Multiple Choice</button>
-		<button class="questionbuttons" onclick="addQuestion('CreateMCH')">Matching</button> 
+		<!--  <button class="questionbuttons" onclick="addQuestion('CreateMCH')">Matching</button> -->
 		<button class="questionbuttons" onclick="addQuestion('CreateMCMA')">Multi-Choice Multi-Answer</button> 
 		<button class="questionbuttons" onclick="addQuestion('CreatePR')">Picture-Response</button> 
 		<button class="questionbuttons" onclick="addQuestion('CreateQR')">Question-Response</button> 

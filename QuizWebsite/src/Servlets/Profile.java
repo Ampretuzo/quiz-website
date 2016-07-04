@@ -1,6 +1,8 @@
 package Servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -11,8 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Main.Constants;
+import classes.Result;
 import classes.User;
 import dao.QuizDAO;
+import dao.ResultDAO;
 import dao.UserDAO;
 
 /**
@@ -41,8 +46,18 @@ public class Profile extends HttpServlet {
 		dispatcher = request.getRequestDispatcher("notfound.jsp");	
 		
 		QuizDAO quizDao= (QuizDAO)ctx.getAttribute("quizDAO");
-		HttpSession s = request.getSession();
-		s.setAttribute("createdQuizzes", quizDao.getCreatedQuizzes(userName));
+		ResultDAO resultDao= (ResultDAO)ctx.getAttribute("resultDAO");
+		
+		request.setAttribute("createdQuizzes", quizDao.getCreatedQuizzes(userName));
+		
+		List<Result> recent = resultDao.getRecentResults(userName, Constants.MAX_DISPLAY);
+		request.setAttribute("recentResults", recent);
+		List<classes.Quiz> recQuiz= new ArrayList<classes.Quiz>();
+		if (recent!= null){
+		for (Result res : recent){
+			recQuiz.add(quizDao.getQuiz(res.getQuizId()));
+		}}
+		request.setAttribute("recentQuizzes", recQuiz);
 		
 		User user = userDAO.getUser(userName);
 		if(user != null)

@@ -57,6 +57,7 @@ public class Login extends HttpServlet {
 		{
 			request.getSession().setAttribute("MasterUser", user);
 			dispatcher = request.getRequestDispatcher("index");
+			request.getSession().setAttribute("isAdmin", userDAO.isAdmin(user.getUserName()));
 		}		
 		dispatcher.forward(request, response);
 	}

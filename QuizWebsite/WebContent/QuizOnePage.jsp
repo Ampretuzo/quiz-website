@@ -12,6 +12,7 @@
 <script type="text/javascript" src="javascript/submitquiz.js"></script>
 <%
 	Quiz quiz = (Quiz) request.getSession().getAttribute("Quiz");
+	int size = ((List<Question>) request.getSession().getAttribute("Questions")).size();
 %>
 <title><%= quiz.getQuizName() %></title>
 </head>
@@ -32,18 +33,15 @@
 	<div id="centerpanel">
 	<br>
 <%	
-	ArrayList<Integer> positions = (ArrayList<Integer>) request.getSession().getAttribute("questionPositions");
-	ArrayList<Question> questions = (ArrayList<Question>) request.getSession().getAttribute("Questions");
-
-	for (int i=0;i<positions.size();i++){
-		out.print("<iframe name='question" + positions.get(i) + "' src='Question?id=" + positions.get(i) + "' id='" + i + "' ></iframe>");
+	for (int i=0;i<size;i++){
+		out.print("<iframe name='question" + i + "' src='Question?id=" + i + "' id='" + i + "' ></iframe>");
 		out.print("<br><br>");
 	}
 %>
 
 	</div>
 	<input type="hidden" id="timeleft" value="<%= quiz.getQuizTime() %>">
-	<input type="hidden" id="num" value="<%= positions.size() %>">
+	<input type="hidden" id="num" value="<%= size %>">
 	
 	<script type="text/javascript">
 		var remaining = 60*1000 * document.getElementById("timeleft").value;

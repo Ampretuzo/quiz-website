@@ -49,8 +49,8 @@ public class SendNote extends HttpServlet {
 		Note nt = factory.getNote(master.getUserName(), date, note, getterUsername, false);
 		MessageDAO mD = (MessageDAO) request.getServletContext().getAttribute("messageDAO");
 		mD.addNote(nt);
-		RequestDispatcher rd = request.getRequestDispatcher("Profile?username=" + getterUsername);
-		rd.forward(request, response);
+		
+		response.sendRedirect("Profile?username=" + getterUsername);
 	}
 
 }
